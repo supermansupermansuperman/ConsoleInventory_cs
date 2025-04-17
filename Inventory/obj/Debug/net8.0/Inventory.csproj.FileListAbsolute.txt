@@ -1,0 +1,14 @@
+C:\Users\adam.varga\source\repos\Inventory\Inventory\obj\Debug\net8.0\Inventory.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\adam.varga\source\repos\Inventory\Inventory\obj\Debug\net8.0\Inventory.AssemblyInfoInputs.cache
+C:\Users\adam.varga\source\repos\Inventory\Inventory\obj\Debug\net8.0\Inventory.AssemblyInfo.cs
+C:\Users\adam.varga\source\repos\Inventory\Inventory\obj\Debug\net8.0\Inventory.csproj.CoreCompileInputs.cache
+C:\Users\adam.varga\source\repos\Inventory\Inventory\bin\Debug\net8.0\Inventory.exe
+C:\Users\adam.varga\source\repos\Inventory\Inventory\bin\Debug\net8.0\Inventory.deps.json
+C:\Users\adam.varga\source\repos\Inventory\Inventory\bin\Debug\net8.0\Inventory.runtimeconfig.json
+C:\Users\adam.varga\source\repos\Inventory\Inventory\bin\Debug\net8.0\Inventory.dll
+C:\Users\adam.varga\source\repos\Inventory\Inventory\bin\Debug\net8.0\Inventory.pdb
+C:\Users\adam.varga\source\repos\Inventory\Inventory\obj\Debug\net8.0\Inventory.dll
+C:\Users\adam.varga\source\repos\Inventory\Inventory\obj\Debug\net8.0\refint\Inventory.dll
+C:\Users\adam.varga\source\repos\Inventory\Inventory\obj\Debug\net8.0\Inventory.pdb
+C:\Users\adam.varga\source\repos\Inventory\Inventory\obj\Debug\net8.0\Inventory.genruntimeconfig.cache
+C:\Users\adam.varga\source\repos\Inventory\Inventory\obj\Debug\net8.0\ref\Inventory.dll

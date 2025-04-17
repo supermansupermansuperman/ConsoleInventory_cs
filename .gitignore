@@ -1,0 +1,6 @@
+bin/                # Ignore build output (common in C# / .NET)
+obj/                # Ignore intermediate object files
+.vs/
+
+*.tmp               # Ignore all temporary files
+*.user              # Ignore Visual Studio user-specific settings

@@ -994,21 +994,24 @@ class MyProgram()
         return as_newImprints;
     }
     //--ATTEMPT PLACEMENT DURING THE AUTOMATIC SORTING--
-    //Manual placer which as opposed to the one meant for user interaction simply takes the coordinates of the item and the item itself and places it in the placer array.
+    //Manual placer which as opposed to the one meant for user interaction simply takes the coordinates of the item and the item itself and places it using the placer array.
     static bool ManualPlacer(int mpP_xOffset, int mpP_yOffset, bool[,] mpP_spaces, int mpP_imprint)
     {
+        ResetPlacer();
         for (int i = 0; i < mpP_spaces.GetLength(0); i++)
         {
             for (int j = 0; j < mpP_spaces.GetLength(1); j++)
             {
-                if (SpaceAvailable(j + mpP_xOffset, i + mpP_yOffset))
+                if (mpP_spaces[i, j])
                 {
-                    Universal.placer[i + mpP_yOffset, j + mpP_xOffset] = mpP_spaces[i, j];
-                }
-                else
-                {
-                    ResetPlacer();
-                    return false;
+                    if (SpaceAvailable(j + mpP_xOffset, i + mpP_yOffset))
+                    {
+                        Universal.placer[i + mpP_yOffset, j + mpP_xOffset] = mpP_spaces[i, j];
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
             }
         }
@@ -1022,7 +1025,6 @@ class MyProgram()
                 }
             }
         }
-        ResetPlacer();
         return true;
     }
     //--CHECK IF THE ITEM CAN BE PLACED IN THE INVENTORY--

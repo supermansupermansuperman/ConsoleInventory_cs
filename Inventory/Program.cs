@@ -2,6 +2,10 @@
 class MyProgram()
 {
     //--CUSTOMIZABLE VARIABLES--
+    /*This class consists of variables that are for the most part customizable by the user.
+     These variables are used to change the appearance and size of the inventory.
+     An idea for the future might be to make a settings interface so that the user does not have to alter the code itself.
+     */
     static class Custom
     {
         //IF SOMETHING DOESN'T WORK, IT'S YOUR FAULT.. PROBABLY
@@ -23,10 +27,12 @@ class MyProgram()
         static public readonly int inventorySpaceY = 1;
         static public int spaceX = 10;
         static public int spaceY = 6;
-        static int test = 0;
     }
 
     //--NON-CUSTOMIZABLE VARIABLES--
+    /*This class consists of universal variables that are used throughout the program,
+    consisting of declerations, simplifications, and universal paremeters that the program executes according to.
+    */
     static class Universal
     {
         static public bool placing = false;
@@ -89,8 +95,8 @@ class MyProgram()
         static readonly public int invConTop = Custom.spaceY * (Custom.inventorySpaceY + 1);
         static readonly public int invConBottom = (Custom.spaceY + Custom.inventoryY) * (Custom.inventorySpaceY + 1);
     }
-
     //--SET STUFF UP--
+    //In the main method, everything is basically set up before letting the user interact with the program.
     static void Main()
     {
         SetConsoleSize();
@@ -112,71 +118,77 @@ class MyProgram()
     {
         bool[,] hatchetSpaces =
         {
-            {true, true, true, true, true },
-            {false, false, false, true, true }
-        };
+        {true, true, true, true, true },
+        {false, false, false, true, true }
+    };
         Universal.Item hatchetObj = new Universal.Item("Hatchet", "bonk", 1, 'Y', ConsoleColor.Blue, hatchetSpaces);
 
         bool[,] daggerSpaces =
         {
-            {true, true, true }
-        };
+        {true, true, true }
+    };
         Universal.Item daggerObj = new Universal.Item("Dagger", "shank", 1, 'R', ConsoleColor.Green, daggerSpaces);
 
         bool[,] greatswordSpaces =
         {
-            {false, false, true, false, false, false, false, false, false, false },
-            {true, true, true, true, true, true, true, true, true, true },
-            {false, false, true, false, false, false, false, false, false, false }
-        };
+        {false, false, true, false, false, false, false, false, false, false },
+        {true, true, true, true, true, true, true, true, true, true },
+        {false, false, true, false, false, false, false, false, false, false }
+    };
         Universal.Item greatswordObj = new Universal.Item("Greatsword", "big bonk", 1, 'S', ConsoleColor.DarkGray, greatswordSpaces);
 
         bool[,] greatGreatswordSpaces =
         {
-            {false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false,},
-            {true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true },
-            {false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false }
-        };
+        {false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false,},
+        {true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true },
+        {false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false }
+    };
         Universal.Item greatGreatswordObj = new Universal.Item("Great Greatsword", "It was too big to be called a sword. Massive, thick, heavy, and far too rough. Indeed, it was a heap of raw iron.", 1, 'H', ConsoleColor.DarkRed, greatGreatswordSpaces);
 
         bool[,] warhammerSpaces =
         {
-            {false, false, false, false, false, false, false, false, false, false, true},
-            {false, false, false, false, false, false, false, false, false, true, true },
-            {true, true, true, true, true, true, true, true, true, true, true },
-            {false, false, false, false, false, false, false, false, false, true, true }
-        };
+        {false, false, false, false, false, false, false, false, false, false, true},
+        {false, false, false, false, false, false, false, false, false, true, true },
+        {true, true, true, true, true, true, true, true, true, true, true },
+        {false, false, false, false, false, false, false, false, false, true, true }
+    };
         Universal.Item warhammerObj = new Universal.Item("Warhammer", "smash", 40000, 'W', ConsoleColor.Red, warhammerSpaces);
 
         bool[,] coinSpaces =
         {
-            {true}
-        };
+        {true}
+    };
         Universal.Item coinObj = new Universal.Item("Coin", "bling bling", 10, 'M', ConsoleColor.DarkBlue, coinSpaces);
 
         bool[,] arrowSpaces =
         {
-            {true, true, true, true, true }
-        };
+        {true, true, true, true, true }
+    };
         Universal.Item arrowObj = new Universal.Item("Arrow", "pew pew", 5, 'P', ConsoleColor.Gray, arrowSpaces);
 
         bool[,] bowSpaces =
         {
-            {false, false, true, true, false, false },
-            {false, true, false, false, true, false },
-            {true, true, true, true, true, true }
-        };
+        {false, false, true, true, false, false },
+        {false, true, false, false, true, false },
+        {true, true, true, true, true, true }
+    };
         Universal.Item bowObj = new Universal.Item("Bow", "twang", 1, 'B', ConsoleColor.DarkMagenta, bowSpaces);
 
         bool[,] holyHandGrenadeSpaces =
         {
-            {true, true},
-            {true, true}
-        };
+        {true, true},
+        {true, true}
+    };
         Universal.Item holyHandGrenadeObj = new Universal.Item("Holy Hand Grenade", "bless this mess", 3, 'G', ConsoleColor.DarkYellow, holyHandGrenadeSpaces);
     }
 
     //--INITIALIZE UNIVERSALLY USED ARRAYS--
+    /*This method initializes the arrays that are used throughout the program.
+     The selector array which is used to determine if the selector is active and if so wchich space is selected.
+     The imprint array which is used to store the items that are currently in the inventory.
+     The placer array which is ued to determine if the placer is active and if so where an item is hovering over.
+     The bool arrays might be entirely false by default but shits unpredictable.
+     */
     static void InitializeArrays()
     {
         for (int i = 0; i < Custom.inventoryY; i++)
@@ -197,6 +209,10 @@ class MyProgram()
     }
 
     //--DRAW THE INVENTORY FRAME WITHOUT THE TEXT AT THE BOTTOM--
+    /*This method draws the inventory frame without the text bubble thing at the bottom.
+     The frame is drawn using a series of loops that draw the brackets and spaces.
+     The brackets are drawn using the characters defined in the Custom class.
+     */
     static void DrawInventory()
     {
         for (int i = 0; i <= Custom.spaceY * 2 + Custom.inventoryY; i++)
@@ -288,8 +304,11 @@ class MyProgram()
             }
         }
     }
-
     //--DRAW THE JUICE INSIDE OF THE INVENTORY FRAME--
+    /*Pretty much the same principle as the method above, but this one draws the "juice" inside of the inventory.
+     Being the spaces that an item is currently hovering over, the space that is currently selected,
+     and the spaces that are currently occupied by the different items.
+     */
     static void DrawInsideInventory()
     {
         for (int i = 0; i < Custom.spaceY * 2 + Custom.inventoryY; i++)
@@ -355,6 +374,10 @@ class MyProgram()
         }
     }
     //--CLEAR THE TEXT SPACE AT THE BOTTOM OF THE CONSOLE--
+    /*This method clears the text space at the bottom of the console.
+     The text space is the area where the item descriptions and other information is displayed.
+     it uses a series of loops to clear the text space by writing spaces over it.
+     */
     static void ClearTextSpace()
     {
         for (int i = Universal.invConBottom + 1; i < Universal.consoleHeight; i++)
@@ -367,12 +390,17 @@ class MyProgram()
         }
     }
     //--ADD TEXT TO THE TEXT SPACE AT THE BOTTOM OF THE CONSOLE--
+    /*This method adds text to the text space at the bottom of the console.
+     It uses the SetCursorPosition method to set the cursor position to the desired location
+     and then writes the text to that location.
+     */
     static void AddText(int atP_row, int atP_col, string atP_text)
     {
         Console.SetCursorPosition(Universal.invConLeft + atP_col + 1, Universal.invConBottom + atP_row + 1);
         Console.Write(atP_text);
     }
     //--DISPLAY THE INFORMATION OF EACH ITEM THAT IS SELECTED--
+    //This method displays the information of each item that is selected using the selector.
     static void DisplayItemInfo(int diiP_imprint)
     {
         ClearTextSpace();
@@ -423,7 +451,8 @@ class MyProgram()
             AddText(1, i, "_");
         }
     }
-    //--CLEAR ALL OF THE TEXT INSIDE OF THE TEXT SPACE--
+    //--CLEAR SPECIFIC TEXT INSIDE OF THE TEXT SPACE--
+    //Clear a specific area within the text space.
     static void ClearText(int ctP_startingRow, int ctP_endingRow, int ctP_startingCol, int ctP_endingCol)
     {
         for (int i = Universal.invConBottom + 1 + ctP_startingRow; i <= Universal.invConBottom + ctP_endingRow; i++)
@@ -437,6 +466,10 @@ class MyProgram()
     }
 
     //--USER INTERACTION MAIN MENU--
+    /*This method is the main menu for the user interaction.
+     It displays the options for the user to choose from and waits for the user to press a key.
+     The key pressed is then used to determine which action to take next.
+     */
     static void UserMain()
     {
         ConsoleKey um_keyInput = ConsoleKey.D0;
@@ -465,6 +498,9 @@ class MyProgram()
         }
     }
     //--ONE OF THE ACTIONS OF THE USER, INTEACTING WITH THE INVENTORY AND VIEWING DESCRIPTIONS--
+    /*This method is used to interact with the inventory using the selector, allowing to view the descriptions of items and
+     pick them up.
+     */
     static void UserInteract()
     {
         ConsoleKey ui_keyInput = ConsoleKey.D0;
@@ -545,6 +581,9 @@ class MyProgram()
         }
     }
     //--ANOTHER ONE OF THE USERS MAIN ACTIONS, PICKING A NEW ITEM TO INITIALIZE INTO THE INVENTORY--
+    /*This method is used to pick a new item to initialize into the inventory.
+     It displays the list of items and allows the user to select one to add to the inventory.
+     */
     static void UserAddItem()
     {
         int uad_selectedRow = 0;
@@ -602,6 +641,9 @@ class MyProgram()
         }
     }
     //--ANOTHER ONE OF THE USERS MAIN ACTIONS, PLACING AN ITEM--
+    /*This method is used to place an item in the inventory.
+     It allows the user to select where to place an item by moving it around and rotating it.
+     */
     static void UserPlaceItem(int upiP_imprint, bool upiP_newItem)
     {
         bool[,] upi_itemSpaces;
@@ -749,6 +791,7 @@ class MyProgram()
     }
 
     //--SIMPLY RESET THE PLACER, MAKE A METHOD SINCE IT'S DONE LIKE 4 TIMES--
+    //Reset the placer array since it's false when not being used.
     static void ResetPlacer()
     {
         for (int i = 0; i < Universal.placerHeight; i++)
@@ -759,8 +802,9 @@ class MyProgram()
             }
         }
     }
-    
+
     //--CREATE A NEW ITEM--
+    //The only place where a new item can be created.
     static int CreateImprint(int ciP_itemListPos)
     {
         Universal.ImprintData imprintObj = new Universal.ImprintData(ciP_itemListPos, 1);
@@ -768,9 +812,14 @@ class MyProgram()
     }
 
     //--PLACE THE ITEM IN THE INVENTORY OR STACK IT ON TOP OF ANOTHER OF THE SAME TYPE AND RETURN THE STATUS--
+    /*This method places or stacks the item and returns an integer from 1 to 3 depending on what the program should do next.
+     1 = The item could not be placed or stacked, meaning the spaces are occupied´and the item can not be stacked on them. This activates the error message and sends the user back to the placer method.
+     2 = The item has had part of its stack transferred onto another item, because the item it was supposed to stack on top of did not have enough space to take it all. This activates the stack message and sends the user back to the placer method.
+     3 = The item has been placed or stacked successfully, making the user can proceed to the main menu to choose their next action.
+     */
     static int Place(int pP_imprint)
     {
-        if(CanPlace())
+        if (CanPlace())
         {
             for (int i = 0; i < Universal.placerHeight; i++)
             {
@@ -814,8 +863,12 @@ class MyProgram()
             }
             return 1;
         }
-    }   
+    }
     //--AUTOMATICALLY SORT THE INVENTORY USING RANDOMIZATION--
+    /*This method automatically sorts the inventory using randomization.
+     It uses a random number generator to shuffle the items and places them in the inventory if possible.
+     If not, then it reshuffles the item and starts again and again until it eventurally gets it which it (probably) will since the items that it started with already fit.
+     */
     static void AutoSort()
     {
         List<int> as_presentImprints;
@@ -862,12 +915,7 @@ class MyProgram()
                     for (int l = 0; l < 4 && !as_placed; l++)
                     {
                         as_currentSpaces = Rotated2DBoolArray(as_currentSpaces);
-                        ManualPlacer(k, j, as_currentSpaces);
-                        if (CanPlace())
-                        {
-                            ManualImprinter(as_presentImprints[i]);
-                            as_placed = true;
-                        }
+                        as_placed = ManualPlacer(k, j, as_currentSpaces, as_presentImprints[i]);
                         if (!as_placed && j == Custom.spaceY + Custom.inventoryY - 1 && k == Custom.spaceX + Custom.inventoryX - 1 && l == 3)
                         {
                             goto startSorting;
@@ -880,6 +928,13 @@ class MyProgram()
         UserMain();
     }
     //--STACK ALL OF THE STACKABLE ITEMS DURING THE AUTOMATIC SORTING--
+    /*This is the only method to have a bit fo a mind of its own, it works reliably until there are a lot of items after which it starts giving every stackable item its max stack.
+     I am really not sure what is wrong but for the most part, it works.
+     it works by first grabbing item that has a stack less than its max stack to a sorting algorithm that stacks them all together.
+     It does this by getting the total stack of all items of a type that were originally detected and then reducing the amount of spaces occupied in the inventory by
+     giving the equal amount of stacking points through as few items as possible.
+     It does this for every unique stackable item and then returns the completed list of supposedly stacked items.
+     */
     static List<int> AutoStack(List<int> asP_oldImprints)
     {
         List<int> as_stackableItems = new List<int>();
@@ -939,37 +994,39 @@ class MyProgram()
         return as_newImprints;
     }
     //--ATTEMPT PLACEMENT DURING THE AUTOMATIC SORTING--
-    static void ManualPlacer(int mpP_xOffset, int mpP_yOffset, bool[,] mpP_spaces)
+    //Manual placer which as opposed to the one meant for user interaction simply takes the coordinates of the item and the item itself and places it in the placer array.
+    static bool ManualPlacer(int mpP_xOffset, int mpP_yOffset, bool[,] mpP_spaces, int mpP_imprint)
     {
-        ResetPlacer();
         for (int i = 0; i < mpP_spaces.GetLength(0); i++)
         {
             for (int j = 0; j < mpP_spaces.GetLength(1); j++)
             {
-                if (i + mpP_yOffset < Universal.placer.GetLength(0) && j + mpP_xOffset < Universal.placer.GetLength(1))
+                if (SpaceAvailable(j + mpP_xOffset, i + mpP_yOffset))
                 {
                     Universal.placer[i + mpP_yOffset, j + mpP_xOffset] = mpP_spaces[i, j];
                 }
+                else
+                {
+                    ResetPlacer();
+                    return false;
+                }
             }
         }
-    }
-    //--IMPRINT ITEMS DURING AUTOMATIC SORTING--
-    static void ManualImprinter(int miP_imprint)
-    {
         for (int i = 0; i < Universal.placerHeight; i++)
         {
             for (int j = 0; j < Universal.placerWidth; j++)
             {
                 if (Universal.placer[i, j])
                 {
-                    Universal.ImprintData.imprintArray[i - Custom.spaceY, j - Custom.spaceX] = miP_imprint;
+                    Universal.ImprintData.imprintArray[i - Custom.spaceY, j - Custom.spaceX] = mpP_imprint;
                 }
             }
         }
         ResetPlacer();
+        return true;
     }
-
-    //--CHECK IF THE ITEM CURRENTLY IN THE PLACER CAN BE PLACED IN THE INVENTORY--
+    //--CHECK IF THE ITEM CAN BE PLACED IN THE INVENTORY--
+    //Basically checks if and item can be placed in the spaces currently occupied by the placer.
     static bool CanPlace()
     {
         for (int i = 0; i < Universal.placerHeight; i++)
@@ -978,7 +1035,14 @@ class MyProgram()
             {
                 if (Universal.placer[i, j])
                 {
-                    if (!SpaceAvailable(j, i))
+                    if (SpaceInsideInv(j, i))
+                    {
+                        if (Universal.ImprintData.imprintArray[i - Custom.spaceY, j - Custom.spaceX] != -1)
+                        {
+                            return false;
+                        }
+                    }
+                    else
                     {
                         return false;
                     }
@@ -988,28 +1052,20 @@ class MyProgram()
         return true;
     }
     //--CHECK IF A SPECIFIC SPACE IS NOT OCCUPIED AND INSIDE THE INVENTORY--
+    //Simply check if a space is available or not.
     static bool SpaceAvailable(int saP_x, int saP_y)
     {
-        if (SpaceInsideInv(saP_x, saP_y))
+        if (SpaceInsideInv(saP_x, saP_y) && !(saP_x >= Universal.placerWidth || saP_y >= Universal.placerHeight))
         {
-            for (int i = 0; i < Custom.inventoryY; i++)
+            if (Universal.ImprintData.imprintArray[saP_y - Custom.spaceY, saP_x - Custom.spaceX] == -1)
             {
-                for (int j = 0; j < Custom.inventoryX; j++)
-                {
-                    if (Universal.ImprintData.imprintArray[saP_y - Custom.spaceY, saP_x - Custom.spaceX] != -1)
-                    {
-                        return false;
-                    }
-                }
+                return true;
             }
         }
-        else
-        {
-            return false;
-        }
-        return true;
+        return false;
     }
     //--CHECK IF A SPECIFIC SPACE IS INSIDE THE INVENTORY--
+    //Simply check if a space of the placer is inside the inventory or not and return the answer.
     static bool SpaceInsideInv(int siiP_x, int siiP_y)
     {
         if (siiP_y >= Custom.spaceY && siiP_y < Custom.spaceY + Custom.inventoryY && siiP_x >= Custom.spaceX && siiP_x < Custom.spaceX + Custom.inventoryX)
@@ -1022,13 +1078,20 @@ class MyProgram()
         }
     }
 
-    //--RETURN THE CORRESPONDING ITEM NUMBER OF AN IMPRINT (EACH ITEM HAS A UNIQUE ID CORRESPONDING TO ITS DATA THROUGH THE ImprintData CLASS)--
+    //--RETURN THE CORRESPONDING ITEM NUMBER OF AN IMPRINT--
+    /*Returns the item type of an imprint.
+    Each item in the inventory has to be unique to store things like stack points, so every imprint imprint which is a unique number has
+    an integer that corresponds to the item type that it is, aswell as all the other non-unique data.
+    */
     static int ImprintsItem(int iiP_imprint)
     {
         return Universal.ImprintData.imprintList[iiP_imprint].itemNumber;
     }
 
     //--ROTATE A 2D BOOL ARRAY 90 DEGREES CLOCKWISE--
+    /*This method is used to rotate a 2D array 90 degrees clockwise.
+     It does this by reading the values in the y axis then printing them in the x axis.
+     */
     static bool[,] Rotated2DBoolArray(bool[,] r2baP_2DBoolArray)
     {
         bool[,] r2ba_new2DBoolArray = new bool[r2baP_2DBoolArray.GetLength(1), r2baP_2DBoolArray.GetLength(0)];
@@ -1043,6 +1106,7 @@ class MyProgram()
     }
 
     //--KEY INPUT FUNCTION--
+    //Simple and clean input function for grabbing key input from the user.
     static ConsoleKey KeyInput()
     {
         //CLEAR ALL THE KEYS IN THE BUFFER BY READING THEM INDIVIDUALLY, DO NOT USE ReadLine BECAUSE IT PAUSES THE PROGRAM TO WAIT FOR NEW BUFFER INPUT

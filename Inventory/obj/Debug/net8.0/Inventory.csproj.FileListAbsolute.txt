@@ -12,3 +12,4 @@ C:\Users\adam.varga\source\repos\Inventory\Inventory\obj\Debug\net8.0\refint\Inv
 C:\Users\adam.varga\source\repos\Inventory\Inventory\obj\Debug\net8.0\Inventory.pdb
 C:\Users\adam.varga\source\repos\Inventory\Inventory\obj\Debug\net8.0\Inventory.genruntimeconfig.cache
 C:\Users\adam.varga\source\repos\Inventory\Inventory\obj\Debug\net8.0\ref\Inventory.dll
+C:\Users\adam.varga\source\repos\Inventory\Inventory\obj\Debug\net8.0\Inventory.sourcelink.json

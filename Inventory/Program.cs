@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Security.Cryptography.X509Certificates;
+using Fortune;
+
 class MyProgram()
 {
     //--CUSTOMIZABLE VARIABLES--
@@ -47,17 +50,38 @@ class MyProgram()
             public readonly int itemNumber;
             public readonly int listPos;
             public int stackAmount;
+
             static public int[,] imprintArray = new int[Custom.inventoryY, Custom.inventoryX];
+
+            public int specialTempInt = -1;
+
             public static List<ImprintData> imprintList = new List<ImprintData>();
             public ImprintData(int itemNumber, int stackAmount)
             {
                 this.itemNumber = itemNumber;
                 this.stackAmount = stackAmount;
                 this.listPos = imprintList.Count;
+
+                if (Universal.Item.itemList[itemNumber] is Universal.JuiceItem)
+                {
+                    this.specialTempInt = Universal.Item.itemList[itemNumber].GetSpecialPermInt();
+                }
+
                 imprintList.Add(this);
             }
 
+            public void SpecialInteract()
+            {
+                if (Universal.Item.itemList[itemNumber] is Universal.JuiceItem)
+                {
+                    if (specialTempInt > 0)
+                    {
+                        specialTempInt--;
+                    }
+                }
+            }
         }
+
 
         public class Item
         {
@@ -67,8 +91,10 @@ class MyProgram()
             public readonly char invChar;
             public readonly ConsoleColor invColor;
             public readonly bool[,] spaces;
-            private static List<Item> items { get; } = new List<Item>();
+
+            private static List<Item> items = new();
             public static IReadOnlyList<Item> itemList => items.AsReadOnly();
+
             public Item(string name, string desc, int maxStack, char invChar, ConsoleColor invColor, bool[,] spaces)
             {
                 this.name = name;
@@ -79,6 +105,23 @@ class MyProgram()
                 this.spaces = spaces;
 
                 items.Add(this);
+            }
+
+            public virtual int GetSpecialPermInt() => -1;
+            public virtual string GetSpecialPermString() => "null";
+        }
+
+        public class JuiceItem : Item
+        {
+            private readonly int totalJuice;
+            public JuiceItem(string name, string desc, int maxStack, char invChar, ConsoleColor invColor, bool[,] spaces, int totalJuice)
+                : base(name, desc, maxStack, invChar, invColor, spaces)
+            {
+                this.totalJuice = totalJuice;
+            }
+            public override int GetSpecialPermInt()
+            {
+                return totalJuice;
             }
         }
 
@@ -122,6 +165,8 @@ class MyProgram()
         {false, false, false, true, true }
     };
         Universal.Item hatchetObj = new Universal.Item("Hatchet", "bonk", 1, 'Y', ConsoleColor.Blue, hatchetSpaces);
+
+        
 
         bool[,] daggerSpaces =
         {
@@ -180,6 +225,22 @@ class MyProgram()
         {true, true}
     };
         Universal.Item holyHandGrenadeObj = new Universal.Item("Holy Hand Grenade", "bless this mess", 3, 'G', ConsoleColor.DarkYellow, holyHandGrenadeSpaces);
+
+        bool[,] healingPotionSpaces =
+        {
+        {false, true, false },
+        {true, true, true },
+        {true, true,true },
+    };
+        Universal.JuiceItem healingPotionObj = new Universal.JuiceItem("Healing Potion", "heals you in mysterious ways (Press R To Use)", 1, 'H', ConsoleColor.Yellow, healingPotionSpaces, 10);
+   
+        bool[,] poisonPotionSpaces =
+        {
+        {false, true, false },
+        {true, true, true },
+        {true, true,true },
+    };
+        Universal.JuiceItem poisonPotionObj = new Universal.JuiceItem("Poison Potion", "karma for drinking the healing potion (Press R To Use)", 1, 'P', ConsoleColor.Green, poisonPotionSpaces, 12);
     }
 
     //--INITIALIZE UNIVERSALLY USED ARRAYS--
@@ -450,6 +511,12 @@ class MyProgram()
         {
             AddText(1, i, "_");
         }
+
+        if (Universal.Item.itemList[ImprintsItem(diiP_imprint)] is Universal.JuiceItem)
+        {
+            AddText(3, (Custom.inventoryX) * (Custom.inventorySpaceX + 1) + 1 - 12, Convert.ToString(Universal.ImprintData.imprintList[diiP_imprint].specialTempInt));
+            AddText(4, (Custom.inventoryX) * (Custom.inventorySpaceX + 1) + 1 - 12, "/" + Convert.ToString(Universal.Item.itemList[ImprintsItem(diiP_imprint)].GetSpecialPermInt()));
+        }
     }
     //--CLEAR SPECIFIC TEXT INSIDE OF THE TEXT SPACE--
     //Clear a specific area within the text space.
@@ -576,6 +643,9 @@ class MyProgram()
                     {
                         ui_cursorXOffset++;
                     }
+                    break;
+                case ConsoleKey.R:
+                    Universal.ImprintData.imprintList[ui_currentImprint].SpecialInteract();
                     break;
             }
         }
@@ -843,6 +913,7 @@ class MyProgram()
                     {
                         if (ImprintsItem(Universal.ImprintData.imprintArray[i, j]) == ImprintsItem(pP_imprint))
                         {
+
                             if (Universal.ImprintData.imprintList[Universal.ImprintData.imprintArray[i, j]].stackAmount != Universal.Item.itemList[ImprintsItem(pP_imprint)].maxStack)
                             {
                                 if (Universal.ImprintData.imprintList[Universal.ImprintData.imprintArray[i, j]].stackAmount + Universal.ImprintData.imprintList[pP_imprint].stackAmount <= Universal.Item.itemList[ImprintsItem(Universal.ImprintData.imprintArray[i, j])].maxStack)
@@ -997,7 +1068,6 @@ class MyProgram()
     //Manual placer which as opposed to the one meant for user interaction simply takes the coordinates of the item and the item itself and places it using the placer array.
     static bool ManualPlacer(int mpP_xOffset, int mpP_yOffset, bool[,] mpP_spaces, int mpP_imprint)
     {
-        ResetPlacer();
         for (int i = 0; i < mpP_spaces.GetLength(0); i++)
         {
             for (int j = 0; j < mpP_spaces.GetLength(1); j++)
@@ -1010,6 +1080,7 @@ class MyProgram()
                     }
                     else
                     {
+                        ResetPlacer();
                         return false;
                     }
                 }
@@ -1025,6 +1096,7 @@ class MyProgram()
                 }
             }
         }
+        ResetPlacer();
         return true;
     }
     //--CHECK IF THE ITEM CAN BE PLACED IN THE INVENTORY--
